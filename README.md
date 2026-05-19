@@ -14,7 +14,7 @@
 
 ```python
 developer = {
-    "name"      : "Deepak Saranay",
+    "name"      : "Deepak kumar",
     "location"  : "New Delhi, India 🇮🇳",
     "education" : ["B.Tech - Mechanical Engg (RGPV)", "PGDCA"],
     "role"      : ["Python Developer", "STEM AI Trainer", "Freelancer"],
