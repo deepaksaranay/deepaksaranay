@@ -16,12 +16,28 @@ def reproj_geom(g, src='EPSG:4326', dst='EPSG:32643'):
     t=Transformer.from_crs(src,dst,always_xy=True)
     return transform(t.transform,g)
 
-districts=[]
-for f in load('districts.geojson'):
-    districts.append((f['properties']['district_id'], reproj_geom(shape(f['geometry']))))
+def choose_native_crs(building_geoms, district_features):
+    best = None
+    for epsg in (32643, 32644):
+        transformed = [reproj_geom(shape(f['geometry']), dst=f'EPSG:{epsg}') for f in district_features]
+        district_union = transformed[0]
+        for geom in transformed[1:]:
+            district_union = district_union.union(geom)
+        score = sum(g.intersection(district_union).area for g in building_geoms)
+        if best is None or score > best[0]:
+            best = (score, epsg, transformed)
+    return best[1], best[2]
+
+district_features = load('districts.geojson')
+building_features = load('buildings.geojson')
+raw_building_geoms = [shape(f['geometry']) for f in building_features]
+native_epsg, district_geoms = choose_native_crs(raw_building_geoms, district_features)
+if native_epsg != 32643:
+    raise RuntimeError(f'expected EPSG:32643 to be the best aligned CRS, got EPSG:{native_epsg}')
+districts=[(f['properties']['district_id'], g) for f, g in zip(district_features, district_geoms)]
 
 records=[]
-for f in load('buildings.geojson'):
+for f in building_features:
     g=make_valid(shape(f['geometry']))
     if g.geom_type == 'GeometryCollection':
         parts=[p for p in g.geoms if p.geom_type in ('Polygon','MultiPolygon')]

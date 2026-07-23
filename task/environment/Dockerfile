@@ -1,4 +1,4 @@
-FROM public.ecr.aws/docker/library/python:3.12-slim
+FROM public.ecr.aws/docker/library/python@sha256:90d88379d643208ec661e80b2faf07aa0272656a16dea7412428e57eb8921932
 
 RUN apt-get update \
     && apt-get install -y --no-install-recommends gcc g++ \
