@@ -1,0 +1,78 @@
+{
+  "type": "FeatureCollection",
+  "name": "districts",
+  "crs": {
+    "type": "name",
+    "properties": {
+      "name": "EPSG:4326"
+    }
+  },
+  "features": [
+    {
+      "type": "Feature",
+      "properties": {
+        "district_id": "D-WEST"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              74.84613392,
+              28.86732852
+            ],
+            [
+              75.0,
+              28.86732852
+            ],
+            [
+              75.0,
+              28.8799639
+            ],
+            [
+              74.84611521,
+              28.8799639
+            ],
+            [
+              74.84613392,
+              28.86732852
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "district_id": "D-EAST"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              75.0,
+              28.86732852
+            ],
+            [
+              75.15386608,
+              28.86732852
+            ],
+            [
+              75.15388479,
+              28.8799639
+            ],
+            [
+              75.0,
+              28.8799639
+            ],
+            [
+              75.0,
+              28.86732852
+            ]
+          ]
+        ]
+      }
+    }
+  ]
+}

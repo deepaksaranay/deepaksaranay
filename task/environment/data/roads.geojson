@@ -1,0 +1,43 @@
+{
+  "type": "FeatureCollection",
+  "features": [
+    {
+      "type": "Feature",
+      "properties": {
+        "road_id": "R1"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            485500,
+            3198800
+          ],
+          [
+            514500,
+            3198800
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "road_id": "R2"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            500000,
+            3198700
+          ],
+          [
+            500000,
+            3199800
+          ]
+        ]
+      }
+    }
+  ]
+}

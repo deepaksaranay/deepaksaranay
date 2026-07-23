@@ -1,0 +1,20 @@
+version = "1.0"
+task_objective = "Clean, deduplicate, spatially join, and summarize synthetic municipal geospatial building data with missing CRS metadata."
+category = "Data Processing and ETL"
+artifact_type = "geospatial_data_processing"
+expert_time_estimate_hours = 2.0
+difficulty_explanation = "The task combines CRS inference, topology-preserving geometry repair, deterministic duplicate resolution, sliver-resistant spatial joins, and metric aggregation. A GIS analyst or geospatial data engineer must avoid common pitfalls such as trusting missing CRS metadata, using lossy buffer(0) repairs, clipping building areas before aggregation, or applying nondeterministic duplicate rules."
+solution_explanation = "The reference solution assigns EPSG:32643 to roads/buildings after comparing district alignment, reprojects districts to EPSG:32643, repairs invalid geometries with shapely.validation.make_valid, normalizes geometries for duplicate detection, assigns districts by largest non-sliver intersection with deterministic tie-breaking, and writes the requested GeoJSON and CSV outputs."
+verification_explanation = "The verifier checks output existence, exact schemas, valid GeoJSON, EPSG:32643 CRS metadata, deterministic feature identities and district assignments, building areas within tolerance, one assignment per building, and district summary aggregates within tolerance."
+
+[environment]
+build = "environment/Dockerfile"
+
+[agent]
+timeout_sec = 3600
+
+[verifier]
+command = "tests/test.sh"
+timeout_sec = 600
+
+artifacts = ["/app/clean_buildings.geojson", "/app/district_summary.csv"]

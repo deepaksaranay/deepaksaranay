@@ -66,6 +66,7 @@ developer = {
 | 📝 | **STEM MCQ Generator** | FastAPI + Google Gemini API | Auto-generates MCQs for STEM subjects |
 | 🌐 | **Web Scraper Pipeline** | Scrapy + Selenium + PostgreSQL | Automated data extraction & storage |
 | 📊 | **Student Report App** | Flask + Python | Marks analysis with grade generation |
+| 🔄 | [**Data Processing & ETL**](https://github.com/handshake-project-dynamo/dynamo-cb24a7e-data-processing-and-etl) | Python + Docker | Dynamo geospatial data processing and ETL task submission |
 
 ---
 
