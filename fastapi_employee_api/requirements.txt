@@ -8,5 +8,6 @@ pydantic-settings
 email-validator
 python-jose[cryptography]
 passlib[bcrypt]
+bcrypt<5
 pytest
 httpx
