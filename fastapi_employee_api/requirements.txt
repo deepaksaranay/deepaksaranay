@@ -2,5 +2,8 @@ fastapi
 uvicorn[standard]
 sqlalchemy
 pydantic
+pydantic-settings
+python-jose[cryptography]
+passlib[bcrypt]
 pytest
 httpx
