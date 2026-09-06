@@ -1,0 +1,65 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Aspirant Explainer: simple, exam-focused learning for competitive exam aspirants." />
+  <title>Aspirant Explainer | Learn. Practice. Improve.</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Plus+Jakarta+Sans:wght@600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <header class="site-header">
+    <nav class="nav container">
+      <a class="brand" href="#home" aria-label="Aspirant Explainer home"><span class="brand-mark">AE</span><span>Aspirant <b>Explainer</b></span></a>
+      <button class="menu-btn" aria-label="Toggle menu" aria-expanded="false">☰</button>
+      <div class="nav-links">
+        <a href="#subjects">Subjects</a><a href="#exams">Exams</a><a href="#explainer">Explainers</a><a href="#practice">Practice</a><a href="#resources">Resources</a>
+      </div>
+      <a class="nav-cta" href="#practice">Start Practice</a>
+    </nav>
+  </header>
+
+  <main id="home">
+    <section class="hero">
+      <div class="container hero-grid">
+        <div>
+          <span class="eyebrow">🎯 Built for serious aspirants</span>
+          <h1>Understand concepts.<br><span>Crack the exam.</span></h1>
+          <p class="hero-copy">Clear explanations, exam-focused notes, current affairs and practice questions, designed to make difficult topics easier to learn.</p>
+          <div class="hero-actions"><a class="btn primary" href="#subjects">Explore Subjects →</a><a class="btn secondary" href="#explainer">View Explainers</a></div>
+          <div class="trust-row"><span>✓ Hindi + English</span><span>✓ Concept-first learning</span><span>✓ Exam-focused</span></div>
+        </div>
+        <div class="hero-card">
+          <div class="card-top"><span>Today's Learning Plan</span><span class="live">● LIVE</span></div>
+          <div class="progress-block"><div class="progress-label"><b>Computer Science</b><span>72%</span></div><div class="progress"><i style="width:72%"></i></div></div>
+          <div class="mini-grid"><div><strong>10</strong><small>MCQs</small></div><div><strong>3</strong><small>Explainers</small></div><div><strong>1</strong><small>Revision</small></div></div>
+          <div class="tip"><span>💡</span><div><b>Study Tip</b><p>Learn the concept first, then solve questions without looking at the answer.</p></div></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="stats"><div class="container stats-grid"><div><b>Concepts</b><span>Simple explanations</span></div><div><b>Practice</b><span>Exam-style questions</span></div><div><b>Revision</b><span>Quick notes & one-liners</span></div><div><b>Current Affairs</b><span>Relevant updates</span></div></div></section>
+
+    <section id="subjects" class="section"><div class="container"><div class="section-head"><div><span class="eyebrow">LEARNING HUB</span><h2>Explore by subject</h2></div><a href="#" class="text-link">View all subjects →</a></div><div class="cards subject-grid">
+      <article class="subject-card featured"><div class="icon">💻</div><span class="tag">POPULAR</span><h3>Computer Science</h3><p>DSA, DBMS, OS, Networks, Python and more.</p><a href="#explainer">Explore →</a></article>
+      <article class="subject-card"><div class="icon">📐</div><h3>Mathematics</h3><p>Concepts, formulas, shortcuts and problem solving.</p><a href="#explainer">Explore →</a></article>
+      <article class="subject-card"><div class="icon">🧠</div><h3>General Studies</h3><p>Static GK, polity, history, geography and economy.</p><a href="#explainer">Explore →</a></article>
+      <article class="subject-card"><div class="icon">🤖</div><h3>Generative AI</h3><p>AI, LLMs, RAG, prompting and practical applications.</p><a href="#explainer">Explore →</a></article>
+    </div></div></section>
+
+    <section id="exams" class="section tinted"><div class="container"><div class="section-head"><div><span class="eyebrow">EXAM PREPARATION</span><h2>Prepare with a clear roadmap</h2></div></div><div class="exam-grid"><div class="exam-card"><span class="exam-no">01</span><h3>BPSC / TRE</h3><p>Computer Science, pedagogy, general studies and targeted practice.</p><a href="#practice">Start preparation →</a></div><div class="exam-card"><span class="exam-no">02</span><h3>SSC & Other Exams</h3><p>Build fundamentals with concise notes and high-frequency questions.</p><a href="#practice">Start preparation →</a></div><div class="exam-card"><span class="exam-no">03</span><h3>Technical Exams</h3><p>CS and STEM concepts explained from basics to exam level.</p><a href="#practice">Start preparation →</a></div></div></div></section>
+
+    <section id="explainer" class="section"><div class="container split"><div><span class="eyebrow">ASPIRANT EXPLAINER</span><h2>Complex topics, explained simply.</h2><p>Every explainer follows a practical pattern: <b>What is it?</b> → <b>Why does it matter?</b> → <b>How does it work?</b> → <b>Exam questions.</b></p><a class="btn primary" href="#practice">Read a sample →</a></div><div class="explain-demo"><div class="question">What is a Stack?</div><div class="answer"><span class="pill">DSA</span><h3>Stack = LIFO</h3><p>Last In, First Out. Think of a stack of plates: the last plate placed on top is the first one removed.</p><div class="stack"><span>Plate 3</span><span>Plate 2</span><span>Plate 1</span></div></div></div></div></section>
+
+    <section id="practice" class="section tinted"><div class="container"><div class="section-head"><div><span class="eyebrow">PRACTICE ZONE</span><h2>Test what you learned</h2></div></div><div class="practice-card"><div><span class="question-count">Question 01 / 10</span><h3>Which data structure follows LIFO?</h3></div><div class="options"><button>Queue</button><button>Stack</button><button>Linked List</button><button>Tree</button></div><div class="practice-footer"><span>Topic: Data Structures</span><span>Difficulty: Easy</span></div></div></div></section>
+
+    <section id="resources" class="section"><div class="container"><div class="section-head"><div><span class="eyebrow">RESOURCES</span><h2>Study smarter</h2></div></div><div class="resource-grid"><a href="#" class="resource"><span>📝</span><div><h3>Quick Notes</h3><p>Fast revision before an exam.</p></div>→</a><a href="#" class="resource"><span>📰</span><div><h3>Current Affairs</h3><p>Important events in one place.</p></div>→</a><a href="#" class="resource"><span>🎥</span><div><h3>Video Explainers</h3><p>Short, focused learning videos.</p></div>→</a><a href="#" class="resource"><span>📚</span><div><h3>Study Guides</h3><p>Structured preparation plans.</p></div>→</a></div></div></section>
+  </main>
+
+  <footer><div class="container footer-inner"><div class="brand"><span class="brand-mark">AE</span><span>Aspirant <b>Explainer</b></span></div><p>Learn clearly. Practice consistently. Improve daily.</p><span>© 2026 Aspirant Explainer</span></div></footer>
+  <script src="script.js"></script>
+</body>
+</html>
