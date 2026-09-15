@@ -1,119 +1,98 @@
-<div align="center">
+# GitLab CI/CD Practice — Manual Approval & Rollback
 
-<!-- Animated Header Banner -->
-<img width="100%" src="https://capsule-render.vercel.app/api?type=waving&color=0:0f2027,50:203a43,100:2c5364&height=200&section=header&text=Deepak%20Kumar&fontSize=50&fontColor=00d4ff&fontAlignY=38&desc=Python%20Developer%20%7C%20AI%20Trainer%20%7C%20STEM%20Specialist&descAlignY=58&descColor=ffffff&animation=fadeIn" />
-
-<!-- Typing Animation -->
-[![Typing SVG](https://readme-typing-svg.herokuapp.com?font=Fira+Code&weight=600&size=22&pause=1000&color=00D4FF&center=true&vCenter=true&width=600&lines=🐍+Python+Developer;🤖+AI+%26+ML+Trainer;⚙️+Mechanical+Engineer+turned+Dev;🚀+Building+AI-powered+Apps)](https://git.io/typing-svg)
-
-</div>
+Ek chhota repo jiska maqsad app banana nahi, **pipeline mechanics seekhna** hai.
+Focus: approval gates, protected environments, deployment history, rollback.
 
 ---
 
-## 👨‍💻 About Me
+## Setup (5 min)
 
-```python
-developer = {
-    "name"      : "Deepak kumar",
-    "location"  : "New Delhi, India 🇮🇳",
-    "education" : ["B.Tech - Mechanical Engg (RGPV)", "PGDCA"],
-    "role"      : ["Python Developer", "STEM AI Trainer", "Freelancer"],
-    "platforms" : ["Outlier", "Mindrift"],
-    "interests" : ["GenAI", "Web Scraping", "REST APIs", "Indian Markets"],
-    "currently" : "Learning AWS Bedrock + RAG Pipelines 🔥"
-}
+```bash
+git init
+git add .
+git commit -m "chore: ci/cd practice scaffold"
+git branch -M main
+git remote add origin git@gitlab.com:<username>/cicd-practice.git
+git push -u origin main
 ```
 
----
-
-## 🛠️ Tech Stack
-
-<div align="center">
-
-### 🐍 Languages & Frameworks
-![Python](https://img.shields.io/badge/Python-3776AB?style=for-the-badge&logo=python&logoColor=white)
-![Django](https://img.shields.io/badge/Django-092E20?style=for-the-badge&logo=django&logoColor=white)
-![FastAPI](https://img.shields.io/badge/FastAPI-005571?style=for-the-badge&logo=fastapi)
-![Flask](https://img.shields.io/badge/Flask-000000?style=for-the-badge&logo=flask&logoColor=white)
-
-### 🤖 AI / ML Tools
-![LangChain](https://img.shields.io/badge/LangChain-1C3C3C?style=for-the-badge&logo=langchain&logoColor=white)
-![Groq](https://img.shields.io/badge/Groq-F55036?style=for-the-badge&logoColor=white)
-![Gemini](https://img.shields.io/badge/Google%20Gemini-4285F4?style=for-the-badge&logo=google&logoColor=white)
-![NumPy](https://img.shields.io/badge/NumPy-013243?style=for-the-badge&logo=numpy&logoColor=white)
-![Pandas](https://img.shields.io/badge/Pandas-150458?style=for-the-badge&logo=pandas&logoColor=white)
-
-### 🌐 Web Scraping & Automation
-![Scrapy](https://img.shields.io/badge/Scrapy-60A839?style=for-the-badge&logo=scrapy&logoColor=white)
-![Selenium](https://img.shields.io/badge/Selenium-43B02A?style=for-the-badge&logo=selenium&logoColor=white)
-![BeautifulSoup](https://img.shields.io/badge/BeautifulSoup-FF6F00?style=for-the-badge&logoColor=white)
-
-### 🗄️ Databases & Tools
-![PostgreSQL](https://img.shields.io/badge/PostgreSQL-316192?style=for-the-badge&logo=postgresql&logoColor=white)
-![SQLite](https://img.shields.io/badge/SQLite-07405E?style=for-the-badge&logo=sqlite&logoColor=white)
-![Git](https://img.shields.io/badge/Git-F05032?style=for-the-badge&logo=git&logoColor=white)
-![GitHub](https://img.shields.io/badge/GitHub-100000?style=for-the-badge&logo=github&logoColor=white)
-
-</div>
+Push karte hi pipeline chalu ho jayega: **Build → Test → Staging** automatic,
+**Production** pe ruk jayega (blue play button dikhega).
 
 ---
 
-## 🚀 Featured Projects
+## Pipeline map
 
-| # | Project | Tech Stack | Description |
-|---|---------|-----------|-------------|
-| 🤖 | **AI Agent** | FastAPI + LangChain + Groq + DuckDuckGo | Intelligent search agent with tool calling |
-| 📝 | **STEM MCQ Generator** | FastAPI + Google Gemini API | Auto-generates MCQs for STEM subjects |
-| 🌐 | **Web Scraper Pipeline** | Scrapy + Selenium + PostgreSQL | Automated data extraction & storage |
-| 📊 | **Student Report App** | Flask + Python | Marks analysis with grade generation |
-| 🧮 | [**Mathematics & Formal Reasoning**](https://github.com/handshake-project-dynamo/dynamo-66fd450-mathematics-and-formal-reasoning) | Shell + Python + Docker | Dynamo task submission for mathematics and formal reasoning workflows |
-
----
-
-## 📊 GitHub Stats
-
-<div align="center">
-
-<img height="180em" src="https://github-readme-stats.vercel.app/api?username=deepaksaranay&show_icons=true&theme=tokyonight&include_all_commits=true&count_private=true&hide_border=true"/>
-<img height="180em" src="https://github-readme-stats.vercel.app/api/top-langs/?username=deepaksaranay&layout=compact&langs_count=7&theme=tokyonight&hide_border=true"/>
-
-</div>
-
-<div align="center">
-
-[![GitHub Streak](https://streak-stats.demolab.com?user=deepaksaranay&theme=tokyonight&hide_border=true)](https://git.io/streak-stats)
-
-</div>
+| Stage | Job | Trigger | Kya sikhata hai |
+|---|---|---|---|
+| build | `build` | auto | artifacts, `expire_in` |
+| test | `test` | auto | `needs:`, JUnit reports |
+| staging | `deploy:staging` | auto (main only) | `environment:`, `rules:` |
+| production | `deploy:production` | **manual** | approval gate, `resource_group` |
+| production | `stop:production` | manual | `action: stop`, `on_stop` |
+| rollback | `rollback:production` | **manual + variable** | emergency job, `needs: []` |
 
 ---
 
-## 🎯 Currently Learning
+## Manual approval kaise kaam karta hai
 
-```
-📦 AWS Bedrock          ████████░░░░  60%
-🔗 RAG Pipelines        ██████░░░░░░  50%
-🗃️ Vector Databases     █████░░░░░░░  40%
-☁️ Cloud (AWS SAA-C03)  ████░░░░░░░░  30%
+```yaml
+rules:
+  - if: $CI_COMMIT_BRANCH == $CI_DEFAULT_BRANCH
+    when: manual
+    allow_failure: false
 ```
 
+- `when: manual` → job apne aap nahi chalta, koi insaan play dabata hai.
+- `allow_failure: false` → pipeline status **blocked** rehta hai jab tak approve na ho.
+  (Agar `true` hota to pipeline "passed" dikh jaata bina deploy ke — classic trap.)
+- Kaun approve kar sakta hai? Jiske paas branch/environment pe **Deploy permission** ho.
+
+**Asli gate lagane ke liye ye zaroor karo (Free tier me bhi):**
+- Settings → Repository → **Protected branches** → `main` (no force push)
+- Settings → CI/CD → **Protected environments** → `production` → sirf Maintainers deploy kar sakein
+
+> Multi-person approval rules (2 log approve karein tab deploy ho) GitLab **Premium** feature hai.
+> Free tier pe `when: manual` + protected environment hi practical gate hai.
+
 ---
 
-## 📫 Connect With Me
+## Rollback ke 3 tareeke (teeno try karo)
 
-<div align="center">
+**1. GitLab ka built-in re-deploy (sabse fast)**
+Deployments → Environments → `production` → deployment history → purane deploy ke aage **Re-deploy** button.
+Ye us purane commit ka `deploy:production` job dobara chalata hai. Zero YAML.
 
-[![LinkedIn](https://img.shields.io/badge/LinkedIn-0077B5?style=for-the-badge&logo=linkedin&logoColor=white)](https://www.linkedin.com/in/deepak-kumar-083448115)
-[![GitHub](https://img.shields.io/badge/GitHub-100000?style=for-the-badge&logo=github&logoColor=white)](https://github.com/deepaksaranay)
-[![Email](https://img.shields.io/badge/Gmail-D14836?style=for-the-badge&logo=gmail&logoColor=white)](mailto:expertiqa11@email.com)
+**2. Is repo ka `rollback:production` job**
+CI/CD → Pipelines → pipeline kholo → `rollback:production` job pe **Run job** →
+Variables me `ROLLBACK_TO` = purana short SHA daalo → Run.
 
-</div>
+**3. Git revert + forward fix (best practice)**
+```bash
+git revert <bad-commit-sha>
+git push
+```
+Naya commit → naya pipeline → wahi approval gate. Audit trail saaf rehta hai.
+
+> Rule of thumb: **incident ke waqt #1 ya #2, cool down ke baad #3.**
 
 ---
 
-<div align="center">
+## Exercises — order me karo
 
-![Profile Views](https://komarev.com/ghpvc/?username=deepaksaranay&color=00d4ff&style=for-the-badge&label=PROFILE+VIEWS)
+1. Push karo, pipeline blocked dekho, production approve karo.
+2. `deploy:production` me `allow_failure` ko `true` karo, push karo — dhyaan do pipeline **green** ho jaata hai bina deploy ke. Wapas `false` karo. *(Ye #1 real-world bug hai.)*
+3. `scripts/test.sh` me ek check jaan bujh ke fail karao — dekho `deploy:staging` bhi nahi chala.
+4. Do commits push karo, dono production pe deploy karo, phir `ROLLBACK_TO` se pehle wale pe wapas jao.
+5. `production` ko protected environment banao, phir kisi non-maintainer se approve karwane ki koshish karo.
+6. `resource_group: production` hata do, do pipelines ek saath prod pe bhejo — race dekho. Phir wapas lagao.
+7. `stop:production` chalao, Environments page pe environment ka status badalte dekho.
 
-<img width="100%" src="https://capsule-render.vercel.app/api?type=waving&color=0:2c5364,50:203a43,100:0f2027&height=120&section=footer"/>
+---
 
-</div>
+## Debugging tips
+
+- YAML galat hai? → CI/CD → Editor → **Validate** tab (push karne se pehle).
+- Job kyun nahi chala? → Pipeline → job → **"Job is stuck"** ya rules mismatch. `rules:` top-se-bottom evaluate hota hai, **pehla match jeet jaata hai**.
+- Artifact nahi mila? → downstream job me `needs:` ya `dependencies:` check karo.
+- Runner nahi mil raha? → Settings → CI/CD → Runners → "Instance runners" enabled hona chahiye.
