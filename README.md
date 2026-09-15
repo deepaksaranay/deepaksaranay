@@ -14,7 +14,7 @@ I design and harden the benchmark tasks used to evaluate how well AI agents actu
 
 ```python
 profile = {
-    "name"        : "Deepak Kumar Sah",
+    "name"        : "Deepak Kumar",
     "aka"         : "Saranay",
     "location"    : "New Delhi, India",
     "focus"       : "AI benchmark design & evaluation engineering",
